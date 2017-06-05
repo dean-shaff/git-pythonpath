@@ -12,7 +12,7 @@ setup(
     description = ("Temporarily add code in a git repo to python path."),
     install_requires=[
     ],
-    # license = "BSD",
+    packages=["git_pythonpath"],
     keywords = "git",
     url = "https://github.com/dean-shaff/git-pythonpath",
 )

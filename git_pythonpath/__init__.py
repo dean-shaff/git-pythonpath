@@ -12,9 +12,7 @@ from contextlib import contextmanager
 
 home_dir = os.path.expanduser("~")
 INCLUDE_PATH = os.path.join(home_dir, ".git-pythonpath")
-if not os.path.exists(INCLUDE_PATH):
-    os.mkdir(INCLUDE_PATH)
-sys.path.append(INCLUDE_PATH)
+
 
 def cleanup():
     """
@@ -24,7 +22,8 @@ def cleanup():
     for path in os.listdir(INCLUDE_PATH):
         full_path = os.path.join(INCLUDE_PATH, path)
         shutil.rmtree(full_path)
-    sys.path.remove(INCLUDE_PATH)
+    if INCLUDE_PATH in sys.path:
+        sys.path.remove(INCLUDE_PATH)
 
 @contextmanager
 def append_git_repo(git_repo):
@@ -33,6 +32,9 @@ def append_git_repo(git_repo):
     Args:
         -git_repo (str): The name of the remote git_repo
     """
+    if not os.path.exists(INCLUDE_PATH):
+        os.mkdir(INCLUDE_PATH)
+    sys.path.append(INCLUDE_PATH)
     repo_name = git_repo.split("/")[-1].replace(".git","")
     if os.path.exists(os.path.join(INCLUDE_PATH, repo_name)):
         pass
@@ -52,5 +54,4 @@ if __name__ == '__main__':
     url2 = "git@github.com:dean-shaff/pyro4tunneling.git"
     with append_git_repo(url1):
         import pyro4tunneling
-
     print(pyro4tunneling.TUNNELING_LOGGER)

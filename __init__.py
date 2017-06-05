@@ -34,7 +34,6 @@ def append_git_repo(git_repo):
         -git_repo (str): The name of the remote git_repo
     """
     repo_name = git_repo.split("/")[-1].replace(".git","")
-    print(repo_name)
     if os.path.exists(os.path.join(INCLUDE_PATH, repo_name)):
         pass
     else:

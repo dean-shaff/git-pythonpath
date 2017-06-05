@@ -3,7 +3,6 @@ git-pythonpath
 
 Include remote git repository (temporarily) in python path.
 """
-import re
 import sys
 import os
 import shutil
@@ -34,8 +33,8 @@ def append_git_repo(git_repo):
     Args:
         -git_repo (str): The name of the remote git_repo
     """
-    pattern = re.compile("(?<=\/)(.*)(?=\.git)")
-    repo_name = pattern.search(git_repo).group(0)
+    repo_name = git_repo.split("/")[-1].replace(".git","")
+    print(repo_name)
     if os.path.exists(os.path.join(INCLUDE_PATH, repo_name)):
         pass
     else:
@@ -49,10 +48,10 @@ def append_git_repo(git_repo):
     cleanup()
 
 
-
 if __name__ == '__main__':
-
-    with append_git_repo("git@github.com:dean-shaff/pyro4tunneling.git"):
+    url1 = "https://github.com/dean-shaff/pyro4tunneling.git"
+    url2 = "git@github.com:dean-shaff/pyro4tunneling.git"
+    with append_git_repo(url1):
         import pyro4tunneling
 
     print(pyro4tunneling.TUNNELING_LOGGER)

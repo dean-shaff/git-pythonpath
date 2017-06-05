@@ -1,4 +1,4 @@
-## git-pythonpath
+## git_pythonpath
 
 A little project for adding git repos to the python path temporarily.
 
@@ -6,6 +6,12 @@ A little project for adding git repos to the python path temporarily.
 
 ```bash
 /path/to/git-pythonpath/$> python setup.py
+```
+
+### Uninstall
+
+```bash
+/path/to/git-pythonpath/$> bash uninstall.sh
 ```
 
 ### Usage

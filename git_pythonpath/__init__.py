@@ -21,6 +21,8 @@ def cleanup():
     """
     for path in os.listdir(INCLUDE_PATH):
         full_path = os.path.join(INCLUDE_PATH, path)
+        mtime = os.path.getmtime(full_path)
+        print(mtime)
         shutil.rmtree(full_path)
     if INCLUDE_PATH in sys.path:
         sys.path.remove(INCLUDE_PATH)

@@ -13,12 +13,15 @@ import subprocess
 import shlex
 from contextlib import contextmanager
 
+__version__ = '0.1'
+
 logging.basicConfig(level=logging.DEBUG)
 module_logger = logging.getLogger(__name__)
 
 home_dir = os.path.expanduser("~")
 INCLUDE_PATH = os.path.join(home_dir, ".git-pythonpath")
 CACHING_TIME = 5*60
+
 
 def cleanup(repo_name, caching_time):
     """

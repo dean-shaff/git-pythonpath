@@ -6,7 +6,7 @@ def read(fname):
 
 setup(
     name = "git-pythonpath",
-    version = "0.1.0",
+    version = "0.1.1",
     author = "Dean Shaff",
     author_email = "dean.shaff@gmail.com",
     description = ("Temporarily add code in a git repo to python path."),

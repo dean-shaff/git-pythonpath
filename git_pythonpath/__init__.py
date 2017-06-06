@@ -13,7 +13,7 @@ import subprocess
 import shlex
 from contextlib import contextmanager
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 logging.basicConfig(level=logging.DEBUG)
 module_logger = logging.getLogger(__name__)

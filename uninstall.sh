@@ -8,7 +8,14 @@ if [[ $INIT_FILE == "git_pythonpath/__init__.pyc" ]]; then
 	else
 		cd .. # Less ideal is moving into some random directory
 	fi
-	INIT_FILE=`python -c "import git_pythonpath; print(git_pythonpath.__file__)"`
+	ERROR_MSG=`python -c "import git_pythonpath; print(git_pythonpath.__file__)" 2>&1`
+    EXIT_STATUS=$?
+    if [[ $EXIT_STATUS -ne 0 ]];then
+        echo "git_pythonpath is not installed."
+        exit 1
+    else
+        INIT_FILE=`python -c "import git_pythonpath; print(git_pythonpath.__file__)"`
+    fi 
 fi
 # Do one final check to make sure we actually have the egg file
 if [[ $INIT_FILE == *"git_pythonpath-$MODULE_VERSION-py2.7.egg"* ]]; then
